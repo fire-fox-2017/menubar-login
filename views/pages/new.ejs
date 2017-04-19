@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <% include ../partials/head %>
   </head>
   <body>
+    <% include ../partials/navbar %>
     <h3><%= title %></h3>
+
 
     <form action="/users/new" method="post">
       <div class="row">
@@ -47,8 +42,6 @@
         </div>
 
       </div>
-
-
     </form>
 
 

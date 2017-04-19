@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/new', (req, res, next) => {
-  res.render('new', {title: "Register"});
+  res.render('./pages/new', {title: "Sign Up", user: req.session.user, message: ``, error: ``});
 })
 
 router.post('/new', (req, res, next) => {
@@ -20,8 +20,16 @@ router.post('/new', (req, res, next) => {
   db.User.create({username: username, email: email, password: password, role: role})
   .then ( user => {
     console.log(`created user ${user.username}.`);
-    res.render('index', {title: "Bro", user: user, message: ""});
+    res.render('./pages/login', {title: "Login", user: req.session.user, message: `You have registered as ${user.username}, please login.`, error: ``});
+
+    // check for duplicate user --> user findOrCreate
+
   })
+})
+
+
+router.get('/login', (req, res, next) => {
+  res.render('./pages/login', {title: "Login", user: req.session.user, message: "", error: ""})
 })
 
 router.post('/login', (req, res, next) => {
@@ -37,7 +45,7 @@ router.post('/login', (req, res, next) => {
     }
     else {
       // res.redirect('/');
-      res.render('index', { title: 'Bro', user: undefined, message: 'Invalid Username or Password.' });
+      res.render('./pages/login', { title: 'Login', user: req.session.user, message: ``, error: 'Invalid Username or Password.' });
     }
 
   })
@@ -47,7 +55,9 @@ router.get('/logout', (req, res, next) => {
   req.session.destroy( () => {
     console.log("user logged out.")
   })
-  res.redirect('/');
+  // res.redirect('/');
+  res.render('./pages/index', { title: 'Bro',  user: undefined, message: "You have logged out.", error: "" });
+
 })
 
 

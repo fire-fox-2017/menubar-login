@@ -3,8 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  let user = undefined;
-  res.render('index', { title: 'Bro', user: user, message: "" });
+  res.render('./pages/index', { title: 'Bro',  user: req.session.user, message: "", error: "" });
 });
 
 
@@ -20,7 +19,7 @@ function checkSignIn(req, res, next){
 
 
 router.get('/home', checkSignIn, (req, res, next) => {
-  res.render('home', {title: "Home", user: req.session.user})
+  res.render('./pages/home', {title: "Home", user: req.session.user, message: "", error: ""})
 })
 
 
