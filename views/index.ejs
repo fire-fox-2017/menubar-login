@@ -3,9 +3,71 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1><a href="/"><%= title %></a></h1>
+
+    <a href="/users/new">Sign Up</a>
+
+    <% if (user) {  %>
+
+        <div class="card-panel">
+          <%= user.username %> has been created.
+        </div>
+
+    <% } %>
+
+    <% if (message) {  %>
+        <div class="card-panel pink lighten-4">
+          <%= message %>
+        </div>
+    <% } %>
+
+
+    <h4> Login </h4>
+    <form action="/users/login" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Username" type="text" name="username">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Password" type="password" name="password">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="checkbox" id="rememberme" name="rememberme" />
+          <label for="rememberme">Remember Me</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s2">
+        </div>
+        <div class="input-field col s2">
+          <input class="btn" type="submit" value="Login">
+        </div>
+        <div class="input-field col s2">
+        </div>
+        <div class="input-field col s6">
+        </div>
+
+      </div>
+
+
+    </form>
+
+
+
   </body>
 </html>
